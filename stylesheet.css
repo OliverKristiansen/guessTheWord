@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georama&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+body {
+    background-color: lightgrey;
+}
+
+#guessTheWord {
+    text-align: center;
+    background-color: #fff;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px 20px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+#answerArea {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+}
+
+.green {
+    background-color: green;
+    padding: 1.5% 0%;
+    width: 100%;
+    border-radius: 10px;
+}
+.red {
+    background-color: red;
+    padding: 1.5% 0%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Oxygen', sans-serif;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: 'Oxygen', sans-serif;
+}
+
+h2 {
+    font-size: 55px;
+    font-family: 'Karla', sans-serif;
+    text-align: center;
+}
+
+input {
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+button {
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    background-color: lightblue;
+    width: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+}

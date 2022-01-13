@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the word</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<h2>Gjett ordet!</h2>
+
+<div id="guessTheWord">
+
+<h1>Dine gjenstående liv:</h1>
+
+<div id="healthbar">
+    <p id="health1" class="green"></p>
+    <p id="health2" class="green"></p>
+    <p id="health3" class="green"></p>
+    <p id="health4" class="green"></p>
+    <p id="health5" class="green"></p>
+</div>
+
+<div id="answerArea">
+<p id="letters"></p>
+
+<input type="text" maxlength="1" style="width: auto;" id="letter">
+
+<button id="letterButton" style="width: auto;" onclick="getValue()">Sjekk bokstav</button>
+
+<p id="message1"></p>
+<p id="message2"></p>
+<p id="message3"></p>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
+<script>
+
+    let rightWord = ["B","E","R","G","E","N"];
+    let guessedLetters = [];
+    let guessedCorrectly = [];
+    let guessedWrong = 0;
+    let input;
+    let letterButtonEl = document.querySelector("#letterButton");
+    letterButtonEl.addEventListener("click", checkLetters);
+    letterButtonEl.addEventListener("click", winLose);
+
+    function array() {
+        for (let b = 0; b < rightWord.length; b++) {
+            guessedCorrectly.push("_");
+            document.getElementById("letters").innerText = guessedCorrectly.join(" ");
+            document.getElementById("letters").style.fontSize = 40+"px";
+            document.getElementById("letters").style.fontFamily = "Arial";
+            document.getElementById("message2").innerText = "Totale bokstaver i ordet er: "+rightWord.length;
+        }
+    }
+    array()
+    console.log(guessedCorrectly);
+
+    function getValue() {
+        input = document.getElementById("letter").value;
+        input = input.toUpperCase();
+    }
+
+    function checkLetters() {
+        for (let i = 0; i < rightWord.length; i++) {
+            if (rightWord[i] === input) {
+                guessedCorrectly[i] = input;
+                document.getElementById("letters").innerText = guessedCorrectly.join(" ");
+            }
+
+        }
+        for (let j = 0; j < guessedLetters.length; j++) {
+            if (input === guessedLetters[j]) {
+                console.log("Denne bokstaven har du allerede gjettet! Tulling!");
+                guessedLetters.pop(guessedLetters[j]);
+            }
+        }
+        let feilGjettetSjekk = rightWord.includes(input);
+        if (feilGjettetSjekk == false) {
+            guessedWrong++;
+        }
+        guessedLetters.push(input);
+        guessedLetters.sort(function (a, b) {
+            if (a > b) {
+                return 1;
+            }
+            if (b > a) {
+                return -1;
+            }
+            return 0;
+        });
+        document.getElementById("message3").innerText = "Du har prøvd "+guessedLetters.length+" bokstav(er): "+guessedLetters.join(" ");
+    }
+
+    function winLose() {
+        let riktigOrd = guessedCorrectly.join("");
+        let riktiglosningsord = rightWord.join("");
+
+        if (guessedWrong === 1) {
+            document.getElementById("health1").classList.remove("green");
+            document.getElementById("health1").classList.add("red");
+        }
+
+        if (guessedWrong === 2) {
+            document.getElementById("health2").classList.remove("green");
+            document.getElementById("health2").classList.add("red");
+        }
+
+        if (guessedWrong === 3) {
+            document.getElementById("health3").classList.remove("green");
+            document.getElementById("health3").classList.add("red");
+        }
+
+        if (guessedWrong === 4) {
+            document.getElementById("health4").classList.remove("green");
+            document.getElementById("health4").classList.add("red");
+        }
+
+        if (guessedWrong === 5) {
+            document.getElementById("health5").classList.remove("green");
+            document.getElementById("health5").classList.add("red");
+            document.getElementById("message1").innerText = "Du brukte for mange forsøk...";
+        }
+
+        if (riktigOrd === riktiglosningsord) {
+            document.getElementById("message1").innerText = "Du gjettet ordet!";
+        }
+    }
+</script>
